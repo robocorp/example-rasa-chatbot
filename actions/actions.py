@@ -18,15 +18,15 @@ class ActionHelloWorld(Action):
 
         dispatcher.utter_message(text=f"I'll see if I can get you an answer. This might take a while. Don't hang up on me.")
 
-        # This now causes everything to wait until the entire function is run. Not what we want.
-        # time.sleep(10)
-
-        url = "https://api.eu1.robocorp.com/process-v1/workspaces/e1d0e43f-0ba4-4f7d-ae19-53f49cfe03f8/processes?"
-
+        # url = "https://api.eu1.robocorp.com/process-v1/workspaces/e1d0e43f-0ba4-4f7d-ae19-53f49cfe03f8/processes?"
+        url = "https://api.eu1.robocorp.com/process-v1/workspaces/e1d0e43f-0ba4-4f7d-ae19-53f49cfe03f8/processes/033cbdd0-6edc-4d15-8869-025b83bbf2a3/run-request?"
+        data = {'type': 'default'}
         headers = {"Authorization": "RC-WSKEY 2HVY8PrMQedcYPSSiZUaG0M4cePmCICw00g4Odx7y8zTTTU4bxD3IOgoVUWjv9RHtVvk074Fam6dnAYJpqtiacxyFMgB7d1Jwq1KrQwXhhh7THEgiY06STVghSj0NuDO"}
 
-        r = requests.get(url, headers=headers)
+        r = requests.post(url, json=data, headers=headers)
 
-        dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine. Processes available: {r.text}")
+        userid = tracker.current_state()['sender_id']
+
+        dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine and your are {userid}. Processes available: {r.text}")
 
         return []

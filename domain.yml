@@ -13,6 +13,17 @@ intents:
 actions:
   - action_show_time
 
+entities:
+- GPE
+
+slots:
+  GPE:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: GPE
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"

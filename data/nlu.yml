@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.0"
 
 nlu:
 - intent: greet
@@ -93,7 +93,16 @@ nlu:
 
 - intent: give_time
   examples: |
-    - can you tell me what time it is
-    - tell me the time
-    - got the time
-    - what time is it
+    - can you tell me what time it is in Milan
+    - tell me the time in London
+    - got the time for New York
+    - what time is it in Helsinki
+    - what time is it in Stokholm
+    - tell me the time in Ljubljana
+    - can you tell me what time it is in Madrid
+    - can you tell me what time it is in Paris
+    - can you tell me what time it is in Rome
+    - what time is it in Oslo
+    - what time is it in Berlin
+    - what time is it in London
+

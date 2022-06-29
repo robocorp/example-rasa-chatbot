@@ -1,5 +1,4 @@
 import datetime as dt
-import time
 import requests
 from typing import Any, Text, Dict, List
 
@@ -12,7 +11,7 @@ class ActionHelloWorld(Action):
     def name(self) -> Text:
         return "action_show_time"
 
-    def run(self, dispatcher: CollectingDispatcher,
+    async def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
@@ -27,6 +26,10 @@ class ActionHelloWorld(Action):
 
         userid = tracker.current_state()['sender_id']
 
-        dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine and your are {userid}. Processes available: {r.text}")
+        dispatcher.utter_message(f"Entities: {tracker.latest_message.get('text')}")
+        city = tracker.get_slot("GPE")
+        dispatcher.utter_message(f"Entity value is {city}!")
+
+        dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine and your are {userid}. Response from Robocorp: {r.text}")
 
         return []

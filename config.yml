@@ -1,5 +1,6 @@
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
+recipe: default.v1
 language: en
 
 pipeline:
@@ -16,6 +17,11 @@ pipeline:
     max_ngram: 4
   - name: DIETClassifier
     epochs: 100
+  - name: SpacyNLP
+    model: "en_core_web_md"
+  - name: SpacyEntityExtractor
+    dimensions: ["CITY"]
+  - name: "EntitySynonymMapper"
 
 # Configuration for Rasa Core.
 # https://rasa.com/docs/rasa/core/policies/

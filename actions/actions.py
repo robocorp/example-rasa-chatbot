@@ -1,4 +1,3 @@
-import datetime as dt
 import requests
 import spacy
 from typing import Any, Text, Dict, List
@@ -18,23 +17,26 @@ class ActionHelloWorld(Action):
 
         dispatcher.utter_message(text=f"I'll see if I can get you an answer. This might take a while. Don't hang up on me.")
 
-        # url = "https://api.eu1.robocorp.com/process-v1/workspaces/e1d0e43f-0ba4-4f7d-ae19-53f49cfe03f8/processes?"
-        url = "https://api.eu1.robocorp.com/process-v1/workspaces/e1d0e43f-0ba4-4f7d-ae19-53f49cfe03f8/processes/033cbdd0-6edc-4d15-8869-025b83bbf2a3/run-request?"
-        data = {'type': 'default'}
-        headers = {"Authorization": "RC-WSKEY 2HVY8PrMQedcYPSSiZUaG0M4cePmCICw00g4Odx7y8zTTTU4bxD3IOgoVUWjv9RHtVvk074Fam6dnAYJpqtiacxyFMgB7d1Jwq1KrQwXhhh7THEgiY06STVghSj0NuDO"}
+        userid = tracker.current_state()['sender_id']
+
+        # This is where the city SHOULD come.
+        #city = tracker.get_slot("GPE")
+
+        # This is simply to fix the broken env issue.
+        nlp = spacy.load("en_core_web_md")
+        doc = nlp(tracker.latest_message.get('text'))
+        city = doc.ents[0]
+
+        # Start process with single work item payload
+        url = "https://api.eu1.robocorp.com/process-v1/workspaces/d6b65aa4-0c45-4fd7-8bec-d68a29896e78/processes/29856e96-5153-4a9e-8c75-6dd4404cec43/runs?"
+        data = {
+            "user": userid,
+            "city": str(city) 
+        }
+        headers = {"Authorization": "RC-WSKEY bfyDwf9ZAMI9ZBMsytqsBn5sGl01ADon9LcHeAAqFisfi716WpF0atZi4Az50ObPZc7haaRLICElRl0OYYOcM9TG5AXYDSQdIl8LI79Gkzx6YqyPcuehgDrjVWdKY"}
 
         r = requests.post(url, json=data, headers=headers)
 
-        userid = tracker.current_state()['sender_id']
-
-        #dispatcher.utter_message(f"Entities: {tracker.latest_message.get('text')}")
-        #city = tracker.get_slot("GPE")
-
-        nlp = spacy.load("en_core_web_md")
-        doc = nlp(tracker.latest_message.get('text'))
-        dispatcher.utter_message(f"All doc ents are {doc.ents}!")
-        dispatcher.utter_message(f"Entity value is {doc.ents[0]}!")
-
-        dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine and your are {userid}. Response from Robocorp: {r.text}")
+        dispatcher.utter_message(text=f"You are user {userid}. I've started a robot to get you an answer. Technical details here: {r.text}")
 
         return []

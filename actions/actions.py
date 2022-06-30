@@ -1,5 +1,6 @@
 import datetime as dt
 import requests
+import spacy
 from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
@@ -26,9 +27,13 @@ class ActionHelloWorld(Action):
 
         userid = tracker.current_state()['sender_id']
 
-        dispatcher.utter_message(f"Entities: {tracker.latest_message.get('text')}")
-        city = tracker.get_slot("GPE")
-        dispatcher.utter_message(f"Entity value is {city}!")
+        #dispatcher.utter_message(f"Entities: {tracker.latest_message.get('text')}")
+        #city = tracker.get_slot("GPE")
+
+        nlp = spacy.load("en_core_web_md")
+        doc = nlp(tracker.latest_message.get('text'))
+        dispatcher.utter_message(f"All doc ents are {doc.ents}!")
+        dispatcher.utter_message(f"Entity value is {doc.ents[0]}!")
 
         dispatcher.utter_message(text=f"It's {dt.datetime.now()} on my machine and your are {userid}. Response from Robocorp: {r.text}")
 

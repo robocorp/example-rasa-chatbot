@@ -30,10 +30,11 @@ class ActionHelloWorld(Action):
 
         # ---- Start process with single work item payload
         
-        # This is the right demo workspace
+        # Use the demo workspace
         url = "https://api.eu1.robocorp.com/process-v1/workspaces/d6b65aa4-0c45-4fd7-8bec-d68a29896e78/processes/a4fee379-ee93-4ce7-a64a-842c2677df43/runs?"
         headers = {"Authorization": settings.control_room_apikey}
          
+        # Create work item payload
         data = {
             "user": userid,
             "city": str(city) 

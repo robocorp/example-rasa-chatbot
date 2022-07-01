@@ -9,12 +9,16 @@ intents:
   - mood_unhappy
   - bot_challenge
   - give_time
+  - EXTERNAL_time_result
 
 actions:
   - action_show_time
+  - action_tell_time
 
 entities:
-- GPE
+  - GPE
+  - timeresult
+  - cityresult
 
 slots:
   GPE:

@@ -95,7 +95,7 @@ nlu:
   examples: |
     - can you tell me what time it is in Milan
     - tell me the time in London
-    - got the time for New York
+    - got the time for Rome
     - what time is it in Helsinki
     - what time is it in Stokholm
     - tell me the time in Ljubljana

@@ -13,7 +13,7 @@ The example chatbot can have a simple conversation and fetch the current time in
 > ...    
 > Bot: Time in Lisbon is 11:35!  
 
-### Triggering the robot execution
+## Triggering the robot execution
 
 Triggering the robot execution happens using [Custom Actions](https://rasa.com/docs/rasa/custom-actions/). The majority of things happen in [actions/actions.py](/actions/actions.py) file, but there are a few other things to notice.
 
@@ -36,7 +36,7 @@ Once you have your robot and process set up in [Robocorp Control Room](https://c
 
 Also, as the robot execution might take some time depending on the types of tasks it's performing, it would be considered a best practise to let user know that the execution is started and the results will come back later.
 
-### Returning the results of the robot execution to the conversation
+## Returning the results of the robot execution to the conversation
 
 Setting this up requires the use of external events, which on the Rasa configuration are also actions. The [documentation](https://rasa.com/docs/rasa/reaching-out-to-user/#external-events) and [reminderbot example](https://github.com/RasaHQ/rasa/tree/main/examples/reminderbot) are really good sources to get this done. We are using a rule, intent and an action like this in our example:
 
@@ -67,7 +67,7 @@ Accordingly, the robot will then send back an HTTP POST call to trigger the give
 }
 ```
 
-### Running the example
+## Running the example
 
 To run the example chatbot, perform these actions on three different terminal tabs (provided that you have [Rasa installed](https://rasa.com/docs/rasa/installation)). Also you should have set up the corresponding [Robocorp process](https://github.com/robocorp/example-rasa-robot) first.
 

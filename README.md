@@ -69,7 +69,7 @@ Accordingly, the robot will then send back an HTTP POST call to trigger the give
 
 ## Running the example
 
-To run the example chatbot, perform these actions on three different terminal tabs (provided that you have [Rasa installed](https://rasa.com/docs/rasa/installation)). Also you should have set up the corresponding [Robocorp process](https://github.com/robocorp/example-rasa-robot) first.
+To run the example chatbot, perform these actions on three different terminal tabs (provided that you have [Rasa installed](https://rasa.com/docs/rasa/installation), as well as [Spacy](https://pypi.org/project/spacy/).). Also you should have set up the corresponding [Robocorp process](https://github.com/robocorp/example-rasa-robot) first.
 
 Train Rasa language model:
 

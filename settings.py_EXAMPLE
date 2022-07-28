@@ -1,1 +1,3 @@
-control_room_apikey = "RC-WSKEY YOURAPIKEYHERE"
+apikey = "ADD ERE"
+workspace = "ADD HERE"
+process = "ADD HERE"

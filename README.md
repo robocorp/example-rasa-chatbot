@@ -7,11 +7,17 @@ This is an example how to set your [Rasa](https://rasa.com/) chatbot up to be ab
 The example chatbot can have a simple conversation and fetch the current time in difference cities around the world. Like this:
 
 > Me: Hi!
+
 > Bot: Hi, how are you?
+
 > Me: What time is it in Lisbon?
+
 > Bot: Wait a sec I'll get it. _(starts a robot execution)_
+
 > ...
+
 > Bot: Time in Lisbon is 11:35!
+
 
 ## Triggering the robot execution
 

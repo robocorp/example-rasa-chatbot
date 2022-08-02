@@ -2,16 +2,16 @@
 
 This is an example how to set your [Rasa](https://rasa.com/) chatbot up to be able to trigger the execution of [Robocorp](https://robocorp.com/) digital workers (aka robots) through Control Room, and how the robot is able to return it's results back to the conversation. This example pairs with the [robot repo](https://github.com/robocorp/example-rasa-robot).
 
-<img width="1113" alt="Screenshot 2022-07-01 at 11 51 17" src="https://user-images.githubusercontent.com/40179958/176871598-204311bd-d824-411c-938a-5ca865e0799f.png">
+<img width="1113" alt="Screenshot 2022-07-01 at 11 51 17" src="architecture.png">
 
 The example chatbot can have a simple conversation and fetch the current time in difference cities around the world. Like this:
 
-> Me: Hi!  
-> Bot: Hi, how are you?  
-> Me: What time is it in Lisbon?  
-> Bot: Wait a sec I'll get it. _(starts a robot execution)_  
-> ...    
-> Bot: Time in Lisbon is 11:35!  
+> Me: Hi!
+> Bot: Hi, how are you?
+> Me: What time is it in Lisbon?
+> Bot: Wait a sec I'll get it. _(starts a robot execution)_
+> ...
+> Bot: Time in Lisbon is 11:35!
 
 ## Triggering the robot execution
 
@@ -59,7 +59,7 @@ Accordingly, the robot will then send back an HTTP POST call to trigger the give
 
 ```
 {
-	"name": "EXTERNAL_time_result", 
+	"name": "EXTERNAL_time_result",
 	"entities": {
 		"timeresult": "12:30",
 		"cityresult": "Milan"
@@ -69,39 +69,39 @@ Accordingly, the robot will then send back an HTTP POST call to trigger the give
 
 ## Running the example
 
-To run the example chatbot, perform these actions on three different terminal tabs (provided that you have [Rasa installed](https://rasa.com/docs/rasa/installation), as well as [Spacy](https://pypi.org/project/spacy/).). Also you should have set up the corresponding [Robocorp process](https://github.com/robocorp/example-rasa-robot) first.
+As a prerequisite, you will need these things installed in your environment:
 
-Train Rasa language model:
+- [Rasa](https://rasa.com/docs/rasa/installation)
+- [Spacy](https://pypi.org/project/spacy/)
+- Download the English language pipeline with `python -m spacy download en_core_web_md`
+- [rpaframework](https://pypi.org/project/rpaframework/)
+- Set up the corresponding [Robocorp process](https://github.com/robocorp/example-rasa-robot) first
+- [http-server](https://www.npmjs.com/package/http-server) which is used to host the chat UI _(optional)_
+
+To run the example chatbot, perform these actions on three different terminal tabs.
+
+On any terminal, train Rasa language model:
 
 ```
 rasa train
 ```
 
-Start the custom action server:
+On the first terminal tab, start the custom action server:
 
 ```
 rasa run actions
 ```
 
-Start the callback server:
+On the second tab, start the Rasa chatbot server:
 
 ```
-python callback_server.py
+rasa run --enable-api --cors "*"
 ```
 
-Start the Rasa chatbot server:
+On the third tab start the http-server that will provide the chat UI. This needs to happen in the root of the repository where the index.html is located.
 
 ```
-rasa run --enable-api
+http-server
 ```
 
-Then send messages to the chatbot from command line or from the tool of your choice:
-
-```
-curl --request POST \
-  --url http://localhost:5005/webhooks/callback/webhook \
-  --header 'Content-Type: application/json' \
-  --data '{"user": "some-user", "message": "Hi!"}'
-```
-
-The chatbot will print it's outputs to the tab where the callback server is running. Have fun chatting!
+The chatbot is now available on [http://127.0.0.1:8080](http://127.0.0.1:8080). Have fun chatting! If you got it all right, you can ask for example _"What time is it in Helsinki?"_, and the execution is handed over to your digital worker!

@@ -2,6 +2,9 @@ from sanic import Sanic, response
 from sanic.request import Request
 from sanic.response import HTTPResponse
 
+#
+# This is only required if you want to see chat outputs in the console.
+#
 
 def create_app() -> Sanic:
 

@@ -32,17 +32,17 @@ actions:
 
 Also remember to make sure that you have necessary configuration for intents, stories and nlu that will trigger the action. We will not cover the setup of these in details in this example, please look for help from Rasa documentation. The code in this repo contains all you need to try out.
 
-Once you have your robot and process set up in [Robocorp Control Room](https://cloud.robocorp.com/), the easiest way to get the exact API call is using the API helper.
+Once you have your robot and process set up in [Robocorp Control Room](https://cloud.robocorp.com/), the easiest way to get the workspace ID, process ID and API key that are required for triggering the Process is throught the API Helper.
 
 ![FireShot Capture 001 - Rasa-Chatbot · Process - cloud robocorp com](https://user-images.githubusercontent.com/40179958/176874274-933fda72-4617-48a5-a5b8-888f3f8e67a1.png)
 
 ![image](https://user-images.githubusercontent.com/40179958/176874242-46d3101b-9380-4d4a-9ba5-9a4e5e1f8c4e.png)
 
-**IMPORTANT: Copy your Control Room API key to the [settings.py_EXAMPLE](settings.py_EXAMPLE) file, and rename so that the file name is just settings.py.**
-
-Also, as the robot execution might take some time depending on the types of tasks it's performing, it would be considered a best practise to let user know that the execution is started and the results will come back later.
+**IMPORTANT: Copy your Control Room API key, Workspace ID and Process ID to the [settings.py_EXAMPLE](settings.py_EXAMPLE) file, and rename so that the file name is just settings.py.**
 
 ## Returning the results of the robot execution to the conversation
+
+As the robot execution might take some time depending on the types of tasks it's performing, it would be considered a best practise to let user know that the execution is started and the results will come back later.
 
 Setting this up requires the use of external events, which on the Rasa configuration are also actions. The [documentation](https://rasa.com/docs/rasa/reaching-out-to-user/#external-events) and [reminderbot example](https://github.com/RasaHQ/rasa/tree/main/examples/reminderbot) are really good sources to get this done. We are using a rule, intent and an action like this in our example:
 

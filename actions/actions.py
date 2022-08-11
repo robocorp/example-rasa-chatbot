@@ -58,8 +58,29 @@ class ActionTellTime(Action):
     ) -> List[Dict[Text, Any]]:
 
         time = next(tracker.get_latest_entity_values("timeresult"), "unknown time")
-        city = next(tracker.get_latest_entity_values("cityresult"), "somewhere")
+        city = next(tracker.get_latest_entity_values("cityresult"), "Somewhere")
 
         dispatcher.utter_message(f"I've got your result! It is {time} in {city}.")
 
         return []
+
+class ActionTellError(Action):
+    """Informs the user of the error in bot action."""
+
+    def name(self) -> Text:
+        return "action_tell_error"
+
+    def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+
+        errortext = next(tracker.get_latest_entity_values("errortext"), "Undefined error.")
+        city = next(tracker.get_latest_entity_values("cityresult"), "Somewhere")
+
+        dispatcher.utter_message(f"Your bot run for {city} resulted in an error: {errortext}")
+
+        return []
+

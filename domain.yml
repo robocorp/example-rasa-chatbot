@@ -10,15 +10,18 @@ intents:
   - bot_challenge
   - give_time
   - EXTERNAL_time_result
+  - EXTERNAL_time_error
 
 actions:
   - action_show_time
   - action_tell_time
+  - action_tell_error
 
 entities:
   - GPE
   - timeresult
   - cityresult
+  - errortext
 
 slots:
   GPE:

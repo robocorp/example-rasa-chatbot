@@ -17,6 +17,11 @@ rules:
   - intent: EXTERNAL_time_result
   - action: action_tell_time
 
+- rule: Bot error
+  steps:
+  - intent: EXTERNAL_time_error
+  - action: action_tell_error
+
 - rule: Go get the time anytime user asks
   steps:
   - intent: give_time

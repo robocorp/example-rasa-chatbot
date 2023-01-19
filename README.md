@@ -2,6 +2,10 @@
 
 This is an example how to set your [Rasa](https://rasa.com/) chatbot up to be able to trigger the execution of [Robocorp](https://robocorp.com/) digital workers (aka robots) through Control Room, and how the robot is able to return it's results back to the conversation. This example pairs with the [robot repo](https://github.com/robocorp/example-rasa-robot).
 
+The reference architecture uses Rasa's default chat interfance channel, and takes you through creating chat intents, custom actions and setting up the communications between Rasa and Robocorp.
+
+[![d2a3a3cec5494782980e5da33fa50630-with-play](https://user-images.githubusercontent.com/40179958/177135673-e96098c4-ee32-4466-853f-c6bfb4ba23c0.gif)](https://www.loom.com/share/d2a3a3cec5494782980e5da33fa50630)
+
 <img width="1113" alt="Screenshot 2022-07-01 at 11 51 17" src="architecture.png">
 
 The example chatbot can have a simple conversation and fetch the current time in difference cities around the world. Like this:
